@@ -7,4 +7,9 @@
 <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
 <fullyQualifiedTypeName name="javax.servlet.annotation.WebListener"/>
 <fullyQualifiedTypeName name="javax.servlet.SingleThreadModel"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.google.gson.Gson"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.NEW"/>
+<fullyQualifiedTypeName name="javax.servlet.annotation.MultipartConfig"/>
 </qualifiedTypeNameHistroy>

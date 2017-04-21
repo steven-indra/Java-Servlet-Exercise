@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Simple CRUD</title>
+</head>
+<body>
+    
+    <h:panelGroup rendered="#{!simpleCrudBean.edit}">
+        <h3>Add Book</h3>
+        <h:form>
+        	<table>
+        		<tr>
+        			<td>ISBN</td>
+        			<td>:</td>
+        			<td><h:inputText value="#{simpleCrudBean.item.isbn}" /></td>
+        			<td><h:outputLabel style = "color:red;" value="ISBN field is mandatory" rendered="#{simpleCrudBean.isbnfield}" /></td>
+        		</tr>
+        		<tr>
+        			<td>Title</td>
+        			<td>:</td>
+        			<td><h:inputText value="#{simpleCrudBean.item.title}" /></td>
+        			<td><h:outputLabel style = "color:red;" value="Title field is mandatory" rendered="#{simpleCrudBean.titlefield}" /></td>
+        		</tr>
+        		<tr>
+        			<td>Author</td>
+        			<td>:</td>
+        			<td><h:inputText value="#{simpleCrudBean.item.author}" /></td>
+        		</tr>
+        		<tr>
+        			<td>Publisher</td>
+        			<td>:</td>
+        			<td><h:inputText value="#{simpleCrudBean.item.publisher}" /></td>
+        		</tr>
+        		<tr>
+        			<td>Price</td>
+        			<td>:</td>
+        			<td>$<h:inputText value="#{simpleCrudBean.item.price}" /></td>
+        			<td><h:outputLabel style = "color:red;" value="Price field is mandatory" rendered="#{simpleCrudBean.pricefield}" /></td>
+        		</tr>
+        	</table>
+            <p>
+                <h:commandButton value="add" action="#{simpleCrudBean.add}" />
+                <h:commandButton value="reset" action="#{simpleCrudBean.resetAdd}" />
+            </p>
+        </h:form>
+    </h:panelGroup>
+    
+    <h:panelGroup rendered="#{simpleCrudBean.edit}">
+        <h3>Edit student #{simpleCrudBean.item.id}</h3>
+        <h:form>
+            <table>
+        		<tr>
+        			<td>ISBN</td>
+        			<td>:</td>
+        			<td><h:inputText value="#{simpleCrudBean.item.isbn}" /></td>
+        			<td><h:outputLabel style = "color:red;" value="ISBN field is mandatory" rendered="#{simpleCrudBean.isbnfield}" /></td>
+        		</tr>
+        		<tr>
+        			<td>Title</td>
+        			<td>:</td>
+        			<td><h:inputText value="#{simpleCrudBean.item.title}" /></td>
+        			<td><h:outputLabel style = "color:red;" value="Title field is mandatory" rendered="#{simpleCrudBean.titlefield}" /></td>
+        		</tr>
+        		<tr>
+        			<td>Author</td>
+        			<td>:</td>
+        			<td><h:inputText value="#{simpleCrudBean.item.author}" /></td>
+        		</tr>
+        		<tr>
+        			<td>Publisher</td>
+        			<td>:</td>
+        			<td><h:inputText value="#{simpleCrudBean.item.publisher}" /></td>
+        		</tr>
+        		<tr>
+        			<td>Price</td>
+        			<td>:</td>
+        			<td>$<h:inputText value="#{simpleCrudBean.item.price}" /></td>
+        			<td><h:outputLabel style = "color:red;" value="Price field is mandatory" rendered="#{simpleCrudBean.pricefield}" /></td>
+        		</tr>
+        	</table>
+            <p>
+                <h:commandButton value="save" action="#{simpleCrudBean.saveEdit}" />
+                <h:commandButton value="cancel" action="#{simpleCrudBean.cancelEdit}" />
+            </p>
+        </h:form>
+    </h:panelGroup>
+    
+    <h3>List Books</h3>
+    <h:form rendered="#{not empty simpleCrudBean.list}">
+        <h:dataTable value="#{simpleCrudBean.list}" var="item">
+        	<h:column><f:facet name="header">ID</f:facet>#{item.id}</h:column>
+            <h:column><f:facet name="header">ISBN</f:facet>#{item.isbn}</h:column>
+            <h:column><f:facet name="header">Title</f:facet>#{item.title}</h:column>
+            <h:column><f:facet name="header">Author</f:facet>#{item.author}</h:column>
+            <h:column><f:facet name="header">Publisher</f:facet>#{item.publisher}</h:column>
+            <h:column><f:facet name="header">Price</f:facet>$#{item.price}</h:column>
+            <h:column>
+                <h:commandButton value="edit" action="#{simpleCrudBean.edit(item)}" />
+            </h:column>
+            <h:column>
+                <h:commandButton value="delete" action="#{simpleCrudBean.delete(item)}" />
+            </h:column>
+        </h:dataTable>
+    </h:form>
+    <h:panelGroup rendered="#{empty simpleCrudBean.list}">
+        <p>No Books! Please add Books.</p>
+    </h:panelGroup>
+</body>
+</html>
